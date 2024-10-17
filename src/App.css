@@ -4,7 +4,16 @@
   padding: 2rem;
   text-align: center;
 }
-
+.posts {
+  margin: auto;
+  background-color: aquamarine;
+  max-width: 70%;
+  border-radius: 20px;
+  border-width: 4px;
+  border-style: solid;
+  border-color: brown;
+  margin-bottom: 2%;
+}
 .logo {
   height: 6em;
   padding: 1.5em;
