@@ -1,8 +1,14 @@
+.App {
+  text-align: center;
+}
 #root {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+}
+#userTable {
+  margin: auto;
 }
 .neg {
   color: red;
@@ -88,7 +94,20 @@
     animation: logo-spin infinite 20s linear;
   }
 }
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
 
+.App-link {
+  color: #61dafb;
+}
 .card {
   padding: 2em;
 }

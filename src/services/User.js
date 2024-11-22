@@ -1,7 +1,6 @@
 import axios from "axios";
 
-const baseUrl = "https://localhost:7229/api/customers";
-
+const baseUrl = "https://localhost:7229/api/users";
 // let token = null;
 // // Tämä on metodi jota kutsutaan aina ennen kuin tehdään muu pyyntö serviceen
 // // Parametrina annetaan token joka otetaan local storagesta
@@ -17,11 +16,11 @@ const baseUrl = "https://localhost:7229/api/customers";
 //   return request.then((response) => response.data);
 // };
 
-// const create = (newCustomer) => {
+// const create = (newUser) => {
 //   const config = {
 //     headers: { Authorization: token },
 //   };
-//   return axios.post(baseUrl, newCustomer, config);
+//   return axios.post(baseUrl, newUser, config);
 // };
 // const remove = (id) => {
 //   const config = {
@@ -34,7 +33,7 @@ const baseUrl = "https://localhost:7229/api/customers";
 //   const config = {
 //     headers: { Authorization: token },
 //   };
-//   return axios.put(`${baseUrl}/${object.customerId}`, object, config);
+//   return axios.put(`${baseUrl}/${object.userId}`, object, config);
 // };
 
 // export default { getAll, create, remove, update, setToken };
@@ -43,8 +42,8 @@ const getAll = () => {
   return request.then((response) => response.data);
 };
 
-const create = (newCustomer) => {
-  return axios.post(baseUrl, newCustomer);
+const create = (newUser) => {
+  return axios.post(baseUrl, newUser);
 };
 
 const remove = (id) => {
@@ -52,7 +51,7 @@ const remove = (id) => {
 };
 
 const update = (object) => {
-  return axios.put(`${baseUrl}/${object.customerId}`, object);
+  return axios.put(`${baseUrl}/${object.userId}`, object);
 };
 
 export default { getAll, create, remove, update };

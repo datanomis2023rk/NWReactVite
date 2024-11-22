@@ -1,10 +1,16 @@
 import React, { useState } from "react";
 import "./App.css";
 import Laskuri from "./Laskuri";
-import Viesti from "./Viesti";
+// import Viesti from "./Viesti";
 import Posts from "./Posts";
 import CustomerList from "./CustomerList";
+import UserList from "./UserList";
 import Message from "./Message";
+import Navbar from "react-bootstrap/Navbar";
+import Nav from "react-bootstrap/Nav";
+import "bootstrap/dist/css/bootstrap.min.css";
+
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 const App = () => {
   // App komponentin tila
@@ -14,34 +20,60 @@ const App = () => {
   const [message, setMessage] = useState("");
   const [isPositive, setIsPositive] = useState(false);
 
-  const huomio = () => {
-    alert("Huomio!");
-  };
+  // const huomio = () => {
+  //   alert("Huomio!");
+  // };
   // huomio(=props)={huomio=funktio}
+
   return (
     <div className="App">
-      <h1>Hello from React!</h1>
+      <Router>
+        <Navbar bg="dark" variant="dark">
+          <Nav className="mr-auto">
+            <Nav.Link href="/customers">Customers</Nav.Link>
+            <Nav.Link href="/posts">Some higlights</Nav.Link>
+            <Nav.Link href="/users">Users</Nav.Link>
+            <Nav.Link href="/laskuri">Laskuri</Nav.Link>
+          </Nav>
+        </Navbar>
 
-      {showMessage && <Message message={message} isPositive={isPositive} />}
+        <h1>Northwind Corporation</h1>
 
-      <CustomerList
-        setIsPositive={setIsPositive}
-        setMessage={setMessage}
-        setShowMessage={setShowMessage}
-      />
-      <Posts />
-      {showLaskuri && <Laskuri huomio={huomio} />}
-      {showLaskuri && (
-        <button onClick={() => setShowLaskuri(!showLaskuri)}>
-          Piilota laskuri
-        </button>
-      )}
-      {!showLaskuri && (
-        <button onClick={() => setShowLaskuri(!showLaskuri)}>
-          Näytä laskuri
-        </button>
-      )}
-      <Viesti teksti="propsi-tervehdys app komponentista" />
+        {showMessage && <Message message={message} isPositive={isPositive} />}
+
+        <Routes>
+          <Route
+            path="/customers"
+            element={
+              <CustomerList
+                setMessage={setMessage}
+                setIsPositive={setIsPositive}
+                setShowMessage={setShowMessage}
+              />
+            }
+          ></Route>
+
+          <Route
+            path="/users"
+            element={
+              <UserList
+                setMessage={setMessage}
+                setIsPositive={setIsPositive}
+                setShowMessage={setShowMessage}
+              />
+            }
+          ></Route>
+
+          <Route
+            path="/posts"
+            element={
+              <Posts info="Nämä ovat yhtiön poimintoja" tervehdys="Hello!" />
+            }
+          ></Route>
+
+          <Route path="/laskuri" element={<Laskuri />}></Route>
+        </Routes>
+      </Router>
     </div>
   );
 };

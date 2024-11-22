@@ -57,7 +57,7 @@ const Customer = ({
   return (
     <div className="customerDiv">
       <h4 onClick={() => setShowDetails(!showDetails)}>
-        {customer.companyName}{" "}
+        {customer.companyName}, , {customer.country}
       </h4>
 
       {showDetails && (
