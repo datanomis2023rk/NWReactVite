@@ -23,14 +23,13 @@ const CustomerEdit = ({
   const [newContactTitle, setNewContactTitle] = useState(
     muokattavaCustomer.contactTitle
   );
-
-  const [newCountry, setNewCountry] = useState(muokattavaCustomer.country);
   const [newAddress, setNewAddress] = useState(muokattavaCustomer.address);
   const [newCity, setNewCity] = useState(muokattavaCustomer.city);
-
+  const [newRegion, setNewRegion] = useState(muokattavaCustomer.region);
   const [newPostalCode, setNewPostalCode] = useState(
     muokattavaCustomer.postalCode
   );
+  const [newCountry, setNewCountry] = useState(muokattavaCustomer.country);
   const [newPhone, setNewPhone] = useState(muokattavaCustomer.phone);
   const [newFax, setNewFax] = useState(muokattavaCustomer.fax);
 
@@ -41,13 +40,17 @@ const CustomerEdit = ({
       companyName: newCompanyName,
       contactName: newContactName,
       contactTitle: newContactTitle,
-      country: newCountry,
       address: newAddress,
       city: newCity,
+      region: newRegion,
       postalCode: newPostalCode,
+      country: newCountry,
       phone: newPhone,
       fax: newFax,
+      orders: [],
+      customerTypes: [],
     };
+
     CustomerService.update(newCustomer)
       .then((response) => {
         if (response.status === 200) {
@@ -111,15 +114,6 @@ const CustomerEdit = ({
           />
         </div>
         <div>
-          <label>Country </label>
-          <input
-            type="text"
-            value={newCountry}
-            placeholder="Country"
-            onChange={({ target }) => setNewCountry(target.value)}
-          />
-        </div>
-        <div>
           <label>Address </label>
           <input
             type="text"
@@ -138,12 +132,30 @@ const CustomerEdit = ({
           />
         </div>
         <div>
+          <label>Region </label>
+          <input
+            type="text"
+            value={newRegion}
+            placeholder="Region"
+            onChange={({ target }) => setNewRegion(target.value)}
+          />
+        </div>
+        <div>
           <label>Postal code </label>
           <input
             type="text"
             value={newPostalCode}
             placeholder="Postal code"
             onChange={({ target }) => setNewPostalCode(target.value)}
+          />
+        </div>
+        <div>
+          <label>Country </label>
+          <input
+            type="text"
+            value={newCountry}
+            placeholder="Country"
+            onChange={({ target }) => setNewCountry(target.value)}
           />
         </div>
         <div>
@@ -165,10 +177,11 @@ const CustomerEdit = ({
           />
         </div>
 
-        <input type="submit" value="save" />
+        <input type="submit" value="save" className="save" />
         <input
           type="button"
           value="back"
+          className="back"
           onClick={() => setMuokkaustila(false)}
         />
       </form>

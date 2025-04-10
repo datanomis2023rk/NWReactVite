@@ -23,6 +23,7 @@ const CustomerAdd = ({
   const [newPhone, setNewPhone] = useState("");
   const [newFax, setNewFax] = useState("");
 
+  // onSubmit tapahtumankäsittelijä funktio
   const handleSubmit = (event) => {
     event.preventDefault();
     var newCustomer = {
@@ -30,17 +31,22 @@ const CustomerAdd = ({
       companyName: newCompanyName,
       contactName: newContactName,
       contactTitle: newContactTitle,
-      country: newCountry,
       address: newAddress,
       city: newCity,
+      region: newRegion,
+      country: newCountry,
       postalCode: newPostalCode,
       phone: newPhone,
       fax: newFax,
     };
+
+    // const token = localStorage.getItem("token");
+    // CustomerService.setToken(token);
+
     CustomerService.create(newCustomer)
       .then((response) => {
         if (response.status === 200) {
-          setMessage("Added new Customer: " + newCustomer.companyName);
+          setMessage(`Added new Customer:  ${newCustomer.companyName}`);
           setIsPositive(true);
           setShowMessage(true);
 
@@ -106,14 +112,6 @@ const CustomerAdd = ({
         <div>
           <input
             type="text"
-            value={newCountry}
-            placeholder="Country"
-            onChange={({ target }) => setNewCountry(target.value)}
-          />
-        </div>
-        <div>
-          <input
-            type="text"
             value={newAddress}
             placeholder="Address"
             onChange={({ target }) => setNewAddress(target.value)}
@@ -130,9 +128,25 @@ const CustomerAdd = ({
         <div>
           <input
             type="text"
+            value={newRegion}
+            placeholder="Region"
+            onChange={({ target }) => setNewRegion(target.value)}
+          />
+        </div>
+        <div>
+          <input
+            type="text"
             value={newPostalCode}
             placeholder="Postal code"
             onChange={({ target }) => setNewPostalCode(target.value)}
+          />
+        </div>
+        <div>
+          <input
+            type="text"
+            value={newCountry}
+            placeholder="Country"
+            onChange={({ target }) => setNewCountry(target.value)}
           />
         </div>
         <div>
@@ -152,10 +166,11 @@ const CustomerAdd = ({
           />
         </div>
 
-        <input type="submit" value="save" />
+        <input type="submit" value="save" className="save" />
         <input
           type="button"
           value="back"
+          className="back"
           onClick={() => setLisäystila(false)}
         />
       </form>

@@ -14,7 +14,12 @@ const Posts = () => {
 
   return (
     <>
-      <h2 onClick={() => setShowPosts(!showPosts)}>Posts from typicode</h2>
+      <h2
+        onClick={() => setShowPosts(!showPosts)}
+        style={{ cursor: "pointer" }}
+      >
+        Posts from typicode
+      </h2>
 
       {showPosts &&
         posts &&

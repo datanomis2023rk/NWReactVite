@@ -1,10 +1,10 @@
 import "./App.css";
 import React, { useState } from "react";
-import CustomerService from "./services/Customer";
+import UserService from "./services/User";
 
-const Customer = ({
-  customer,
-  editCustomer,
+const User = ({
+  user,
+  editUser,
   setIsPositive,
   setShowMessage,
   setMessage,
@@ -16,12 +16,12 @@ const Customer = ({
   // Komponentin tilan määritys
   const [showDetails, setShowDetails] = useState(false);
 
-  const deleteCustomer = (customer) => {
-    if (window.confirm(`Remove Customer ${customer.companyName}`) === true) {
-      CustomerService.remove(customer.customerId)
+  const deleteUser = (user) => {
+    if (window.confirm(`Remove User ${user.lastName}`) === true) {
+      UserService.remove(user.userId)
         .then((res) => {
           if (res.status === 200) {
-            setMessage(`Removed customer ${customer.companyName}`);
+            setMessage(`Removed user ${user.lastName}`);
             setIsPositive(true);
             setShowMessage(true);
             window.scrollBy(0, -10000); // Scrollataan ylös jotta nähdään alert
@@ -55,40 +55,38 @@ const Customer = ({
   };
 
   return (
-    <div className="customerDiv">
+    <div className="userDiv">
       <h4
         onClick={() => setShowDetails(!showDetails)}
         style={{ cursor: "pointer" }}
       >
-        {customer.companyName}, {customer.country}
+        {user.firstName}, {user.lastName}
       </h4>
       {showDetails && (
         <div className="customerDetails">
           <h3>
-            {customer.companyName}, {customer.country}
+            {user.firstName}, {user.lastName}
           </h3>
-          <button onClick={() => deleteCustomer(customer)}>Delete</button>
+          <button onClick={() => deleteUser(user)}>Delete</button>
           <> </>
-          <button className="Buttons" onClick={() => editCustomer(customer)}>
-            Edit
-          </button>
+          <button onClick={() => editUser(user)}>Edit</button>
           <table>
             <thead>
               <tr>
-                <th>Contact person</th>
-                <th>Phone</th>
-                <th>Address</th>
-                <th>City</th>
-                <th>Country</th>
+                <th>Username</th>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th>Email</th>
+                <th>Accesslevel</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>{customer.contactName}</td>
-                <td>{customer.phone}</td>
-                <td>{customer.address}</td>
-                <td>{customer.city}</td>
-                <td>{customer.country}</td>
+                <td>{user.userName}</td>
+                <td>{user.firstName}</td>
+                <td>{user.lastName}</td>
+                <td>{user.email}</td>
+                <td>{user.accesslevelId}</td>
               </tr>
             </tbody>
           </table>
@@ -98,4 +96,4 @@ const Customer = ({
   );
 };
 
-export default Customer;
+export default User;

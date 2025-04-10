@@ -1,36 +1,36 @@
 import "./App.css";
 import React, { useState, useEffect } from "react";
-import CustomerService from "./services/Customer";
-import Customer from "./Customer";
-import CustomerAdd from "./CustomerAdd";
-import CustomerEdit from "./CustomerEdit";
+import UserService from "./services/User";
+import User from "./User";
+import UserAdd from "./UserAdd";
+import UserEdit from "./UserEdit";
 
-const CustomerList = ({ setIsPositive, setShowMessage, setMessage }) => {
+const UserList = ({ setIsPositive, setShowMessage, setMessage }) => {
   // Komponentin tilan määritys
-  const [customers, setCustomers] = useState([]);
-  const [showCustomers, setShowCustomers] = useState(false);
+  const [users, setUsers] = useState([]);
+  const [showUsers, setShowUsers] = useState(false);
   const [lisäystila, setLisäystila] = useState(false);
   const [muokkaustila, setMuokkaustila] = useState(false);
   const [reload, reloadNow] = useState(false);
-  const [muokattavaCustomer, setMuokattavaCustomer] = useState(false);
+  const [muokattavaUser, setMuokattavaUser] = useState([]);
   const [search, setSearch] = useState("");
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    CustomerService.setToken(token);
+    UserService.setToken(token);
 
-    CustomerService.getAll().then((data) => {
-      setCustomers(data);
+    UserService.getAll().then((data) => {
+      setUsers(data);
     });
-  }, [lisäystila, muokkaustila, reload]); // Jos nämä statet muuttuu niin useEffect() ajetaan uudestaan
+  }, [lisäystila, muokkaustila, reload]);
 
   const handleSearchInputChange = (event) => {
-    setShowCustomers(true);
+    setShowUsers(true);
     setSearch(event.target.value.toLowerCase());
   };
 
-  const editCustomer = (customer) => {
-    setMuokattavaCustomer(customer);
+  const editUser = (user) => {
+    setMuokattavaUser(user);
     setMuokkaustila(true);
   };
   return (
@@ -38,9 +38,9 @@ const CustomerList = ({ setIsPositive, setShowMessage, setMessage }) => {
       <h1>
         <nobr
           style={{ cursor: "pointer" }}
-          onClick={() => setShowCustomers(!showCustomers)}
+          onClick={() => setShowUsers(!showUsers)}
         >
-          Customers
+          Users
         </nobr>
 
         {!lisäystila && (
@@ -53,14 +53,14 @@ const CustomerList = ({ setIsPositive, setShowMessage, setMessage }) => {
       {!lisäystila && !muokkaustila && (
         <input
           className="kysely"
-          placeholder="Search by company name"
+          placeholder="Search by Last Name"
           value={search}
           onChange={handleSearchInputChange}
         />
       )}
 
       {lisäystila && (
-        <CustomerAdd
+        <UserAdd
           setLisäystila={setLisäystila}
           setIsPositive={setIsPositive}
           setMessage={setMessage}
@@ -69,32 +69,32 @@ const CustomerList = ({ setIsPositive, setShowMessage, setMessage }) => {
       )}
 
       {muokkaustila && (
-        <CustomerEdit
+        <UserEdit
           setMuokkaustila={setMuokkaustila}
           setIsPositive={setIsPositive}
           setMessage={setMessage}
           setShowMessage={setShowMessage}
-          muokattavaCustomer={muokattavaCustomer}
+          muokattavaUser={muokattavaUser}
         />
       )}
 
       {!lisäystila &&
         !muokkaustila &&
-        showCustomers &&
-        customers &&
-        customers.map((c) => {
-          const lowerCaseName = c.companyName.toLowerCase();
+        showUsers &&
+        users &&
+        users.map((u) => {
+          const lowerCaseName = u.lastName.toLowerCase();
           if (lowerCaseName.indexOf(search) > -1) {
             return (
-              <Customer
-                key={c.customerId}
-                customer={c}
+              <User
+                key={u.userId}
+                user={u}
                 reloadNow={reloadNow}
                 reload={reload}
                 setIsPositive={setIsPositive}
                 setShowMessage={setShowMessage}
                 setMessage={setMessage}
-                editCustomer={editCustomer}
+                editUser={editUser}
               />
             );
           }
@@ -103,4 +103,4 @@ const CustomerList = ({ setIsPositive, setShowMessage, setMessage }) => {
   );
 };
 
-export default CustomerList;
+export default UserList;

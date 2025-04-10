@@ -1,8 +1,33 @@
+.App {
+  margin: 0 auto;
+  text-align: center;
+  height: 670px;
+}
 #root {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+}
+#userTable {
+  margin: auto;
+}
+table,
+tbody,
+thead,
+tr {
+  width: 1000px;
+
+  padding-left: 10%;
+}
+th,
+td {
+  margin: 20px;
+  padding-left: 10%;
+  text-align: center;
+}
+.buttons {
+  margin-left: 10px;
 }
 .neg {
   color: red;
@@ -33,14 +58,47 @@
   width: 70%;
   margin-left: 15%;
 }
+h2 {
+  text-align: left;
+}
+p {
+  text-align: left;
+  font-weight: bold;
+  color: red;
+}
+label {
+  font-weight: bold;
+  float: inline-start;
+  margin-right: 10px;
+}
+input {
+  display: block;
+  font-weight: bold;
+}
+.save {
+  font-weight: bold;
+  background-color: aquamarine;
+  margin-top: 10px;
+  width: 225px;
+  margin-right: 10px;
+  float: inline-start;
+}
+.back {
+  font-weight: bold;
+  background-color: rgb(235, 194, 13);
+  margin-top: 10px;
+  display: block;
+}
+
 .customerDetails {
   background-color: rgb(40, 203, 43);
   border-style: solid;
-  width: 700px;
+  width: 1200px;
   margin: auto;
   margin-bottom: 50px;
   border-radius: 30px;
-  padding-left: 10%;
+  padding-left: 0%;
+  text-align: center;
 }
 
 .posts {
@@ -55,12 +113,15 @@
 }
 .nappi {
   border-radius: 10px;
-  margin-left: 10px;
-  font-size: 26px;
+  margin-left: 20px;
+  font-size: 20px;
   background-color: chocolate;
   color: white;
+  height: 50px;
 }
-
+.kysely {
+  margin-left: 500px;
+}
 .logo {
   height: 6em;
   padding: 1.5em;
@@ -95,4 +156,11 @@
 
 .read-the-docs {
   color: #888;
+}
+.logout {
+  margin-left: 100px;
+}
+.mr-auto {
+  margin-left: 400px;
+  width: 1000px;
 }

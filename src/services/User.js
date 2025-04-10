@@ -1,6 +1,6 @@
 import axios from "axios";
 
-//const baseUrl = "https://localhost:7229/api/customers";
+//const baseUrl = "https://localhost:7229/api/users";
 const baseUrl =
   "https://northwindrestapi20250410122553-gsh7b5e5auccdecs.northeurope-01.azurewebsites.net";
 let token = null;
@@ -17,12 +17,16 @@ const getAll = () => {
   const request = axios.get(baseUrl, config);
   return request.then((response) => response.data);
 };
+// const getAll = () => {
+//   const request = axios.get(baseUrl);
+//   return request.then((response) => response.data);
+// };
 
-const create = (newCustomer) => {
+const create = (newUser) => {
   const config = {
     headers: { Authorization: token },
   };
-  return axios.post(baseUrl, newCustomer, config);
+  return axios.post(baseUrl, newUser, config);
 };
 const remove = (id) => {
   const config = {
@@ -35,8 +39,8 @@ const update = (object) => {
   const config = {
     headers: { Authorization: token },
   };
-  console.log(object.customerId);
-  return axios.put(`${baseUrl}/${object.customerId}`, object, config);
+  console.log(object);
+  return axios.put(`${baseUrl}/${object.userId}`, object, config);
 };
 
 export default { getAll, create, remove, update, setToken };
