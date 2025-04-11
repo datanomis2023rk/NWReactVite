@@ -2,7 +2,7 @@ import axios from "axios";
 
 //const baseUrl = "https://localhost:7229/api/users";
 const baseUrl =
-  "https://northwindrestapi20250410122553-gsh7b5e5auccdecs.northeurope-01.azurewebsites.net";
+  "https://northwindrestapi-gmccb0cxcfgcg0a5.northeurope-01.azurewebsites.net";
 let token = null;
 // Tämä on metodi jota kutsutaan aina ennen kuin tehdään muu pyyntö serviceen
 // Parametrina annetaan token joka otetaan local storagesta
