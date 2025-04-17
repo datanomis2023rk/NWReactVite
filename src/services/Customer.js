@@ -2,7 +2,7 @@ import axios from "axios";
 
 //const baseUrl = "https://localhost:7229/api/customers";
 const baseUrl =
-  "https://northwindrestapi-gmccb0cxcfgcg0a5.northeurope-01.azurewebsites.net/api/customers";
+  "northwindrestapi-gmccb0cxcfgcg0a5.northeurope-01.azurewebsites.net/api/customers";
 let token = null;
 // Tämä on metodi jota kutsutaan aina ennen kuin tehdään muu pyyntö serviceen
 // Parametrina annetaan token joka otetaan local storagesta
@@ -31,10 +31,10 @@ const remove = (id) => {
   return axios.delete(`${baseUrl}/${id}`, config);
 };
 const find = (id) => {
-    const config = {
-        headers: { Authorization: token },
-    };
-    return axios.get(`${baseUrl}/${id}`, config);
+  const config = {
+    headers: { Authorization: token },
+  };
+  return axios.get(`${baseUrl}/${id}`, config);
 };
 const update = (object) => {
   const config = {
