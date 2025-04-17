@@ -20,9 +20,6 @@ const App = () => {
   const [isPositive, setIsPositive] = useState(false);
   const [loggedInUser, setLoggedInUser] = useState("");
   const [adminUser, setAdminUser] = useState(false);
-  
-  };
-  
 
   useEffect(() => {
     let storedUser = localStorage.getItem("username");
@@ -57,23 +54,31 @@ const App = () => {
         />
       )}
       {loggedInUser && (
-              <Router>
-                  <h3>Northwind Corp</h3>
+        <Router>
+          <h3>Northwind Corp</h3>
           <Navbar bg="dark" variant="dark">
             <Nav className="mr-auto">
-                          <Nav.Link href="/Customers"><h4>Customers</h4></Nav.Link>
-                          {adminUser && <Nav.Link href="/UserList"><h4>Users</h4></Nav.Link>}
-                          <Nav.Link href="/Posts"><h4>Some higlights</h4></Nav.Link>
+              <Nav.Link href="/Customers">
+                <h4>Customers</h4>
+              </Nav.Link>
+              {adminUser && (
+                <Nav.Link href="/UserList">
+                  <h4>Users</h4>
+                </Nav.Link>
+              )}
+              <Nav.Link href="/Posts">
+                <h4>Some higlights</h4>
+              </Nav.Link>
 
-                          <Nav.Link href="/Laskuri"><h4>Laskuri</h4></Nav.Link>
+              <Nav.Link href="/Laskuri">
+                <h4>Laskuri</h4>
+              </Nav.Link>
               <> </>
-              <button className="logout" onClick={() => logout()}><h5>
-                              Logout</h5>
+              <button className="logout" onClick={() => logout()}>
+                <h5>Logout</h5>
               </button>
             </Nav>
           </Navbar>
-
-          
 
           {showMessage && <Message message={message} isPositive={isPositive} />}
 
