@@ -30,7 +30,12 @@ const remove = (id) => {
   };
   return axios.delete(`${baseUrl}/${id}`, config);
 };
-
+const find = (id) => {
+    const config = {
+        headers: { Authorization: token },
+    };
+    return axios.get(`${baseUrl}/${id}`, config);
+};
 const update = (object) => {
   const config = {
     headers: { Authorization: token },
@@ -39,4 +44,4 @@ const update = (object) => {
   return axios.put(`${baseUrl}/${object.customerId}`, object, config);
 };
 
-export default { getAll, create, remove, update, setToken };
+export default { getAll, create, remove, update, setToken, find };

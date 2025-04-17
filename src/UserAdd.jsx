@@ -18,7 +18,7 @@ const UserAdd = ({
   const [newUsername, setNewUsername] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [newPassword2, setNewPassword2] = useState("");
-  const [newPasswordTest, setNewPasswordTest] = useState(false);
+  //const [newPasswordTest, setNewPasswordTest] = useState(false);
   // onSubmit tapahtumankäsittelijä funktio
   const handleSubmit = (event) => {
     event.preventDefault();

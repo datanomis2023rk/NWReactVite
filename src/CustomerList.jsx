@@ -12,7 +12,7 @@ const CustomerList = ({ setIsPositive, setShowMessage, setMessage }) => {
   const [lisäystila, setLisäystila] = useState(false);
   const [muokkaustila, setMuokkaustila] = useState(false);
   const [reload, reloadNow] = useState(false);
-  const [muokattavaCustomer, setMuokattavaCustomer] = useState(false);
+  const [muokattavaCustomer, setMuokattavaCustomer] = useState([]);
   const [search, setSearch] = useState("");
 
   useEffect(() => {

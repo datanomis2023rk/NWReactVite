@@ -8,20 +8,37 @@ const CustomerAdd = ({
   setIsPositive,
   setMessage,
   setShowMessage,
+  customers,
 }) => {
   // Komponentin tilan määritys
   const [newCustomerId, setNewCustomerId] = useState("");
+  const [newCustomerVarattu, setNewCustomerVarattu] = useState(false);
   const [newCompanyName, setNewCompanyName] = useState("");
   const [newContactName, setNewContactName] = useState("");
   const [newContactTitle, setNewContactTitle] = useState("");
 
   const [newCountry, setNewCountry] = useState("");
   const [newAddress, setNewAddress] = useState("");
-  const [newCity, setNewCity] = useState("");
-
+  const [newCity, setNewCity] = useState(null);
+  const [newRegion, setNewRegion] = useState("");
   const [newPostalCode, setNewPostalCode] = useState("");
   const [newPhone, setNewPhone] = useState("");
   const [newFax, setNewFax] = useState("");
+
+  useEffect(() => {
+    if (newCustomerId.length == 5) {
+      CustomerService.find(newCustomerId).then((res) => {
+        if (res.status === 200) {
+          setNewCustomerVarattu(true);
+        } else {
+          setNewCustomerVarattu(false);
+        }
+      }),
+        [newCustomerId];
+    } else {
+      setNewCustomerVarattu(false);
+    }
+  });
 
   // onSubmit tapahtumankäsittelijä funktio
   const handleSubmit = (event) => {
@@ -84,6 +101,7 @@ const CustomerAdd = ({
             required
           />
         </div>
+        {newCustomerVarattu && <p>Tämä ID tunnus on varattu!</p>}
         <div>
           <input
             type="text"

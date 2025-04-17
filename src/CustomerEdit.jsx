@@ -47,8 +47,8 @@ const CustomerEdit = ({
       country: newCountry,
       phone: newPhone,
       fax: newFax,
-      orders: [],
-      customerTypes: [],
+      //orders: [],
+      //customerTypes: [],
     };
 
     CustomerService.update(newCustomer)
